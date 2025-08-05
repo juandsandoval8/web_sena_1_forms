@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block title %}Panel Dev{% endblock %}
+{% block content %}
+<h2 class="mb-4">Panel de Desarrollador</h2>
+
+<div class="row">
+  <!-- Gestión de usuarios -->
+  <div class="col-md-6">
+    <div class="card mb-4">
+      <div class="card-header bg-dark text-white">Gestión de Usuarios</div>
+      <div class="card-body">
+        <form method="post" action="{{ url_for('dev_add_user') }}">
+          <div class="mb-2">
+            <input type="text" name="username" class="form-control" placeholder="Usuario" required>
+          </div>
+          <div class="mb-2">
+            <input type="password" name="password" class="form-control" placeholder="Contraseña" required>
+          </div>
+          <div class="mb-2">
+            <select name="role" class="form-select" required>
+              <option value="instructor">Instructor</option>
+              <option value="administrador">Administrador</option>
+              <option value="desarrollador">Desarrollador</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-success">Agregar Usuario</button>
+        </form>
+        <hr>
+        <h5>Usuarios Existentes</h5>
+        <ul class="list-group">
+          {% for u, d in usuarios.items() %}
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            {{ u }} ({{ d.role }})
+            {% if u not in ["admin","dev","instructor"] %}
+              <a href="{{ url_for('dev_delete_user', username=u) }}" class="btn btn-sm btn-danger">Eliminar</a>
+            {% endif %}
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Configuración -->
+  <div class="col-md-6">
+    <div class="card mb-4">
+      <div class="card-header bg-secondary text-white">Configuración del Sistema</div>
+      <div class="card-body">
+        <p><b>Base de Datos:</b> {{ info.base }}</p>
+        <p><b>Usuarios:</b> {{ info.users }}</p>
+        <p><b>Registros de Instructores:</b> {{ info.registros }}</p>
+        <a href="{{ url_for('dev_verificar') }}" class="btn btn-warning">Verificar Integridad</a>
+        <a href="{{ url_for('dev_backup') }}" class="btn btn-primary">Backup</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

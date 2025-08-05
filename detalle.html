@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block title %}Detalle Instructor{% endblock %}
+{% block content %}
+<h2 class="mb-4">Detalle del Instructor</h2>
+
+<div class="card shadow-lg">
+  <div class="card-body">
+    <h4 class="card-title">{{ registro.nombre_instructor }}</h4>
+    <p class="card-text text-muted">Fecha de Registro: {{ registro.fecha_registro }}</p>
+    
+    <div class="row">
+      <div class="col-md-6">
+        <p><strong>Regional:</strong> {{ registro.regional }}</p>
+        <p><strong>Centro de Formación:</strong> {{ registro.centro_formacion }}</p>
+        <p><strong>Lugar de Desarrollo:</strong> {{ registro.lugar_desarrollo }}</p>
+        <p><strong>Programa:</strong> {{ registro.programa }}</p>
+        <p><strong>Fecha Elaboración:</strong> {{ registro.fecha_elaboracion }}</p>
+      </div>
+      <div class="col-md-6">
+        <p><strong>Competencia Programa:</strong> {{ registro.competencia_programa }}</p>
+        <p><strong>Tipo de Competencia:</strong> {{ registro.tipo_competencia }}</p>
+        <p><strong>Descripción del Perfil:</strong> {{ registro.descripcion_perfil }}</p>
+        <p><strong>Tipo de Vinculación:</strong> {{ registro.tipo_vinculacion }}</p>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="row">
+      <div class="col-md-6">
+        <p><strong>Nivel de Formación:</strong> {{ registro.nivel_formacion }}</p>
+        <p><strong>Título:</strong> {{ registro.titulo }}</p>
+        <p><strong>Nivel de Formación 2:</strong> {{ registro.nivel_formacion2 }}</p>
+        <p><strong>Título 2:</strong> {{ registro.titulo2 }}</p>
+      </div>
+      <div class="col-md-6">
+        <p><strong>Experiencia Técnica:</strong> {{ registro.experiencia_tecnica }}</p>
+        <p><strong>Experiencia Docente:</strong> {{ registro.experiencia_docente }}</p>
+        <p><strong>Observaciones:</strong> {{ registro.observaciones }}</p>
+      </div>
+    </div>
+
+    <hr>
+
+    <!-- Checks -->
+    <div class="row">
+      <div class="col-md-4">
+        <p><strong>Cumplimiento Adicionales:</strong> {{ "Sí" if registro.cumplimiento_adicionales else "No" }}</p>
+      </div>
+      <div class="col-md-4">
+        <p><strong>Cumple Perfil:</strong> {{ "Sí" if registro.cumple_perfil else "No" }}</p>
+      </div>
+      <div class="col-md-4">
+        <p><strong>¿Es Virtual?:</strong> {{ "Sí" if registro.virtual else "No" }}</p>
+      </div>
+    </div>
+
+    <div class="mt-4">
+      <a href="{{ url_for('admin_panel') }}" class="btn btn-secondary">Volver</a>
+      <a href="{{ url_for('admin_eliminar', id=id) }}" class="btn btn-danger">Eliminar</a>
+      <a href="{{ url_for('admin_plantilla', id=id) }}" class="btn btn-success">Generar Plantilla</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

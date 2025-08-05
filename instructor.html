@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+{% block title %}Formulario Instructor{% endblock %}
+{% block content %}
+<h2 class="mb-4">Formulario del Instructor</h2>
+
+<form method="post" action="{{ url_for('instructor_form') }}">
+  <div class="row g-3">
+
+    <!-- Datos generales -->
+    <div class="col-md-6">
+      <label for="regional" class="form-label">Regional</label>
+      <input type="text" class="form-control" id="regional" name="regional" required>
+    </div>
+
+    <div class="col-md-6">
+      <label for="centro_formacion" class="form-label">Centro de Formación</label>
+      <input type="text" class="form-control" id="centro_formacion" name="centro_formacion" required>
+    </div>
+
+    <div class="col-md-6">
+      <label for="lugar_desarrollo" class="form-label">Lugar de Desarrollo</label>
+      <input type="text" class="form-control" id="lugar_desarrollo" name="lugar_desarrollo" required>
+    </div>
+
+    <div class="col-md-6">
+      <label for="programa" class="form-label">Programa</label>
+      <input type="text" class="form-control" id="programa" name="programa" required>
+    </div>
+
+    <div class="col-md-6">
+      <label for="fecha_elaboracion" class="form-label">Fecha de Elaboración</label>
+      <input type="date" class="form-control" id="fecha_elaboracion" name="fecha_elaboracion" required>
+    </div>
+
+    <!-- Datos específicos -->
+    <div class="col-md-6">
+      <label for="competencia_programa" class="form-label">Competencia del Programa</label>
+      <input type="text" class="form-control" id="competencia_programa" name="competencia_programa" required>
+    </div>
+
+    <div class="col-md-6">
+      <label for="tipo_competencia" class="form-label">Tipo de Competencia</label>
+      <input type="text" class="form-control" id="tipo_competencia" name="tipo_competencia" required>
+    </div>
+
+    <div class="col-md-12">
+      <label for="descripcion_perfil" class="form-label">Descripción del Perfil</label>
+      <textarea class="form-control" id="descripcion_perfil" name="descripcion_perfil" rows="3" required></textarea>
+    </div>
+
+    <div class="col-md-6">
+      <label for="nombre_instructor" class="form-label">Nombre del Instructor</label>
+      <input type="text" class="form-control" id="nombre_instructor" name="nombre_instructor" required>
+    </div>
+
+    <div class="col-md-6">
+      <label for="tipo_vinculacion" class="form-label">Tipo de Vinculación</label>
+      <input type="text" class="form-control" id="tipo_vinculacion" name="tipo_vinculacion" required>
+    </div>
+
+    <div class="col-md-6">
+      <label for="nivel_formacion" class="form-label">Nivel de Formación</label>
+      <input type="text" class="form-control" id="nivel_formacion" name="nivel_formacion" required>
+    </div>
+
+    <div class="col-md-6">
+      <label for="titulo" class="form-label">Título</label>
+      <input type="text" class="form-control" id="titulo" name="titulo" required>
+    </div>
+
+    <div class="col-md-6">
+      <label for="nivel_formacion2" class="form-label">Nivel de Formación 2</label>
+      <input type="text" class="form-control" id="nivel_formacion2" name="nivel_formacion2">
+    </div>
+
+    <div class="col-md-6">
+      <label for="titulo2" class="form-label">Título 2</label>
+      <input type="text" class="form-control" id="titulo2" name="titulo2">
+    </div>
+
+    <div class="col-md-6">
+      <label for="experiencia_tecnica" class="form-label">Experiencia Técnica</label>
+      <input type="text" class="form-control" id="experiencia_tecnica" name="experiencia_tecnica" required>
+    </div>
+
+    <div class="col-md-6">
+      <label for="experiencia_docente" class="form-label">Experiencia Docente</label>
+      <input type="text" class="form-control" id="experiencia_docente" name="experiencia_docente" required>
+    </div>
+
+    <div class="col-md-12">
+      <label for="observaciones" class="form-label">Observaciones</label>
+      <textarea class="form-control" id="observaciones" name="observaciones" rows="2"></textarea>
+    </div>
+
+    <!-- Checks -->
+    <div class="col-md-4 form-check">
+      <input class="form-check-input" type="checkbox" id="cumplimiento_adicionales" name="cumplimiento_adicionales">
+      <label class="form-check-label" for="cumplimiento_adicionales">Cumplimiento Adicionales</label>
+    </div>
+
+    <div class="col-md-4 form-check">
+      <input class="form-check-input" type="checkbox" id="cumple_perfil" name="cumple_perfil">
+      <label class="form-check-label" for="cumple_perfil">Cumple Perfil</label>
+    </div>
+
+    <!-- ✅ Nuevo check para Virtual -->
+    <div class="col-md-4 form-check">
+      <input class="form-check-input" type="checkbox" id="virtual" name="virtual">
+      <label class="form-check-label" for="virtual">¿Es Virtual?</label>
+    </div>
+
+  </div>
+
+  <div class="mt-4">
+    <button type="submit" class="btn btn-success">Guardar</button>
+    <a href="{{ url_for('logout') }}" class="btn btn-secondary">Cerrar sesión</a>
+  </div>
+</form>
+{% endblock %}

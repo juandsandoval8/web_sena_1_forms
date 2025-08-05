@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% block title %}Panel Admin{% endblock %}
+{% block content %}
+<h2 class="mb-4">Panel de Administrador</h2>
+
+<!-- ================== FILTROS ================== -->
+<form method="get" action="{{ url_for('admin_panel') }}" class="mb-3">
+  <div class="row g-2">
+    <div class="col-md-3">
+      <input type="text" name="filtro_instructor" class="form-control"
+             placeholder="Filtrar por Instructor" value="{{ request.args.get('filtro_instructor', '') }}">
+    </div>
+    <div class="col-md-3">
+      <input type="text" name="filtro_programa" class="form-control"
+             placeholder="Filtrar por Programa" value="{{ request.args.get('filtro_programa', '') }}">
+    </div>
+    <div class="col-md-3">
+      <select name="filtro_virtual" class="form-select">
+        <option value="">-- Virtual o Presencial --</option>
+        <option value="true" {% if request.args.get('filtro_virtual') == 'true' %}selected{% endif %}>Virtual</option>
+        <option value="false" {% if request.args.get('filtro_virtual') == 'false' %}selected{% endif %}>Presencial</option>
+      </select>
+    </div>
+    <div class="col-md-3">
+      <button type="submit" class="btn btn-primary w-100">Aplicar Filtros</button>
+    </div>
+  </div>
+</form>
+
+<!-- ================== TABLA DE REGISTROS ================== -->
+<form method="post" action="{{ url_for('admin_plantilla_seleccion') }}">
+  <table class="table table-bordered table-hover align-middle">
+    <thead class="table-dark">
+      <tr>
+        <th>✔</th>
+        <th>#</th>
+        <th>Fecha Registro</th>
+        <th>Instructor</th>
+        <th>Programa</th>
+        <th>Centro</th>
+        <th>Virtual</th> <!-- ✅ Nueva columna -->
+        <th>Cumple Perfil</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for r in registros %}
+      <tr>
+        <td class="text-center">
+          <input type="checkbox" name="seleccionados" value="{{ loop.index0 }}">
+        </td>
+        <td>{{ loop.index }}</td>
+        <td>{{ r.fecha_registro }}</td>
+        <td>{{ r.nombre_instructor }}</td>
+        <td>{{ r.programa }}</td>
+        <td>{{ r.centro_formacion }}</td>
+        <td>{{ "Sí" if r.virtual else "No" }}</td> <!-- ✅ Mostrar Virtual -->
+        <td>{{ "Sí" if r.cumple_perfil else "No" }}</td>
+        <td>
+          <a href="{{ url_for('admin_detalle', id=loop.index0) }}" class="btn btn-sm btn-info">Ver</a>
+          <a href="{{ url_for('admin_eliminar', id=loop.index0) }}" class="btn btn-sm btn-danger">Eliminar</a>
+          <a href="{{ url_for('admin_plantilla', id=loop.index0) }}" class="btn btn-sm btn-success">Llenar Plantilla</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <!-- ================== BOTONES GLOBALES ================== -->
+  <div class="d-flex flex-wrap gap-2 mt-3">
+    <button type="submit" class="btn btn-warning">Generar Plantilla con Seleccionados</button>
+    <a href="{{ url_for('admin_plantilla_all') }}" class="btn btn-outline-warning">Generar Plantilla con Todos</a>
+    <a href="{{ url_for('admin_exportar') }}" class="btn btn-outline-success">Exportar a Excel (general)</a>
+    <a href="{{ url_for('admin_consolidar') }}" class="btn btn-outline-primary">Crear Consolidado JSON</a>
+  </div>
+</form>
+{% endblock %}
