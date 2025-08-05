@@ -1,0 +1,22 @@
+{
+  "instructor": {
+    "password": "c1437a55f6e93b7049c4064af1b0920974e383a435283f5d0b0496ee4a8a47b5",
+    "role": "instructor"
+  },
+  "admin": {
+    "password": "240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9",
+    "role": "administrador"
+  },
+  "dev": {
+    "password": "87274af01876341455b32d805946f272871bb42effa6604dccf28bb027afa82b",
+    "role": "desarrollador"
+  },
+  "juan": {
+    "password": "f6ccb3e8d609012238c0b39e60b2c9632b3cdede91e035dad1de43469768f4cc",
+    "role": "administrador"
+  },
+  "david": {
+    "password": "0f14089313b20c1723ec1d660b0aaa4f473cf5b321cd370f2d48b7bcf9a7b234",
+    "role": "instructor"
+  }
+}
